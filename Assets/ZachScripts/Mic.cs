@@ -19,6 +19,8 @@ public class Mic : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.mic = this;
+        
         _buffer = new float[sample];
 
         if (Microphone.devices == null || Microphone.devices.Length == 0)
