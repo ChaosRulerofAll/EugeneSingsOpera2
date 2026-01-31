@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class Judging : MonoBehaviour
 {
-    public bool[] judgyAudience = new bool[30];
-    public int seats;
+    int seats = 0;
+    bool[] judgyAudience = new bool[seats];
 
-    bool CompareValues(float targetValue, float currentValue)
+    float CompareValues(float targetValue, float currentValue)
     {
         return math.abs(targetValue - currentValue) + 0.0001f;
     }
 
-    void CalculateAudienceAcceptance()
+    public void CalculateAudienceAcceptance()
     {
         ResetValues();
 
@@ -27,9 +27,9 @@ public class Judging : MonoBehaviour
 
     void ResetValues()
     {
-        foreach in judgyAudience        
+        for (int i = 0; i < judgyAudience.Length; i++)
         {
-            judgyAudience = false;
+            judgyAudience[i] = false;
         }
     }
 }
