@@ -10,8 +10,8 @@ public class Mic : MonoBehaviour
     public float loudness01; 
     float raw;       
     
-    float sensitivity = 2.0f;
-    float smoothing = 10.0f;
+    [SerializeField] float sensitivity = 2.0f;
+    [SerializeField] float smoothing = 10.0f;
 
     AudioClip _micClip;
     float[] _buffer;
@@ -63,5 +63,6 @@ public class Mic : MonoBehaviour
 
         float t = 1f - Mathf.Exp(-smoothing * Time.deltaTime);
         loudness01 = Mathf.Lerp(loudness01, target01, t);
+        GameManager.Instance.volume = loudness01;
     }
 }

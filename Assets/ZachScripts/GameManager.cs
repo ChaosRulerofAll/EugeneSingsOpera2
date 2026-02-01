@@ -5,8 +5,10 @@ public class GameManager : MonoBehaviour
 {
     public Mic mic;
     public Judging judging;
+    public ConductorManager conductorManager;
 
-    private float target = 0.5f;
+    public float target;
+    public float volume;
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -20,6 +22,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    
-    
+
+    public void HitThatNoteKevin()
+    {
+        
+    }
 }

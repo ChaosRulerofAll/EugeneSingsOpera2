@@ -1,5 +1,6 @@
 using System;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Judging : MonoBehaviour
@@ -23,6 +24,7 @@ public class Judging : MonoBehaviour
         float cValue = CompareValues(targetValue, currentValue);
 
         float percentage = Mathf.Ceil((1 - cValue) * 30);
+        print(percentage);
 
         for (int i = 0; i < percentage; i++)
         {
@@ -36,5 +38,11 @@ public class Judging : MonoBehaviour
         {
             judgyAudience[i] = false;
         }
+    }
+
+    void Update()
+    {
+        CalculateAudienceAcceptance(GameManager.Instance.target, GameManager.Instance.volume);
+        //CalculateAudienceAcceptance(1, 0.25f);
     }
 }
