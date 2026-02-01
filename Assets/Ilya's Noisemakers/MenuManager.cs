@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
     public void Opera()
     {
         Debug.Log("*Warm Ups*");
-        //SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene(1);
     }
 
     public void Exit()
