@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class Judging : MonoBehaviour
 {
-    bool[] judgyAudience = new bool[30];
+    //bool[] judgyAudience = new bool[149];
+    [SerializeField] Chair[] seats;
 
     private void Start()
     {
         GameManager.Instance.judging = this;
+        seats = this.GetComponentsInChildren<Chair>();
     }
 
     float CompareValues(float targetValue, float currentValue)
@@ -23,20 +25,20 @@ public class Judging : MonoBehaviour
 
         float cValue = CompareValues(targetValue, currentValue);
 
-        float percentage = Mathf.Ceil((1 - cValue) * 30);
+        float percentage = Mathf.Ceil((1 - cValue) * seats.Length);
         print(percentage);
 
         for (int i = 0; i < percentage; i++)
         {
-            judgyAudience[i] = true;
+            seats[i].CheckIsHappy(true);
         }
     } 
 
     void ResetValues()
     {
-        for (int i = 0; i < judgyAudience.Length; i++)
+        for (int i = 0; i < seats.Length; i++)
         {
-            judgyAudience[i] = false;
+            seats[i].CheckIsHappy(false);
         }
     }
 

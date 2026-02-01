@@ -12,7 +12,7 @@ public class ConductorManager : MonoBehaviour
 
     [SerializeField] Transform shoulder;
     Transform trans;
-    Transform form;
+    Vector3 form;
     Vector3 shaker;
 
 
@@ -20,7 +20,7 @@ public class ConductorManager : MonoBehaviour
     {
         GameManager.Instance.conductorManager = this;
         trans = transform;
-        form = transform;
+        form = shoulder.localPosition;
     }
 
     private void FixedUpdate()
@@ -34,13 +34,13 @@ public class ConductorManager : MonoBehaviour
             
         }
 
-        shoulder.rotation = Quaternion.Lerp(shoulder.rotation, Quaternion.Euler(100 * currentNoteVolume - 50, 90, 0), 0.05f);
+        shoulder.rotation = Quaternion.Lerp(shoulder.rotation, Quaternion.Euler(0, 0, 100 * (1 - currentNoteVolume)), 0.05f);
         
         shaker = new Vector3(Mathf.Sin(Time.realtimeSinceStartup * 2 * shakeCooficient),
             Mathf.Sin(Time.realtimeSinceStartup * 3 * shakeCooficient),
             Mathf.Sin(Time.realtimeSinceStartup * 7 * shakeCooficient));
 
-        shoulder.localPosition = form.position + (shaker * 0.05f);
+        shoulder.localPosition = form + (shaker * 0.05f);
 
         countDown -= Time.deltaTime;
     }
